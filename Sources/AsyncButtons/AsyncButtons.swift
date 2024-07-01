@@ -55,7 +55,6 @@ public extension UIButton {
     }
     
     private func endLoading() {
-        
         let spinner = self.subviews.last(where: {$0.tag == self.spinnerTag})
         
         UIView.animate(withDuration: 0.35) {
@@ -75,13 +74,13 @@ public struct AsyncButton<Label: View>: View {
     @State private var isLoading = false
     private let externalIsLoading: Bool
     
-    init(action: @escaping () async -> (), @ViewBuilder label: @escaping () -> Label) {
+    public init(action: @escaping () async -> (), @ViewBuilder label: @escaping () -> Label) {
         self.action = action
         self.label = label
         self.externalIsLoading = false
     }
     
-    init(action: @escaping (@escaping () -> ()) -> (), @ViewBuilder label: @escaping () -> Label) {
+    public init(action: @escaping (@escaping () -> ()) -> (), @ViewBuilder label: @escaping () -> Label) {
         self.action = {
             await withCheckedContinuation { continuation in
                 action {
@@ -93,7 +92,7 @@ public struct AsyncButton<Label: View>: View {
         self.externalIsLoading = false
     }
     
-    init(isLoading: Bool, action: @escaping () -> (), @ViewBuilder label: @escaping () -> Label) {
+    public init(isLoading: Bool, action: @escaping () -> (), @ViewBuilder label: @escaping () -> Label) {
         self.externalIsLoading = isLoading
         self.label = label
         self.action = {
