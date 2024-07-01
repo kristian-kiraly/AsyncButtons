@@ -3,7 +3,7 @@
 
 import SwiftUI
 
-extension UIButton {
+public extension UIButton {
     func performAsyncAction(action: @escaping () async -> ()) {
         Task {
             startLoading()
@@ -68,7 +68,7 @@ extension UIButton {
     }
 }
 
-struct AsyncButton<Label: View>: View {
+public struct AsyncButton<Label: View>: View {
     let action: () async -> ()
     @ViewBuilder let label: () -> Label
     
@@ -101,7 +101,7 @@ struct AsyncButton<Label: View>: View {
         }
     }
     
-    var body: some View {
+    public var body: some View {
         if #available(iOS 17.0, *) {
             button
                 .onChange(of: externalIsLoading) { _, newValue in
