@@ -147,9 +147,9 @@ public protocol AsyncButtonStyle {
 }
 
 public struct AsyncButtonStyleConfiguration {
-    let isPressed: Bool
-    let isLoading: Bool
-    let label: AnyView
+    public let isPressed: Bool
+    public let isLoading: Bool
+    public let label: AnyView
     
     public init(isPressed: Bool, isLoading: Bool, label: AnyView) {
         self.isPressed = isPressed
